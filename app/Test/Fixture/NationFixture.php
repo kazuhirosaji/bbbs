@@ -5,6 +5,7 @@
  */
 class NationFixture extends CakeTestFixture {
 
+	public $useDbConfig = 'test';
 /**
  * Fields
  *
@@ -24,11 +25,12 @@ class NationFixture extends CakeTestFixture {
  *
  * @var array
  */
+
 	public $records = array(
-		array(
-			'id' => 1,
-			'name' => 'Lorem ipsum dolor sit amet'
-		),
+		array('id' => 1, 'name' => 'JPN'),
+		array('id' => 2, 'name' => 'USA'),
+		array('id' => 3, 'name' => 'GER'),
+		array('id' => 4, 'name' => 'SPA'),
 	);
 
 }
