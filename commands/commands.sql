@@ -35,5 +35,5 @@ INSERT INTO products (name,nation_id,description,created)
     VALUES ('Beer', '3', 'ビールです。', NOW());
 
 
-
-
+create database test_bbbs;
+grant all on test_bbbs.* to dbuser@localhost identified by '*******';
