@@ -14,7 +14,7 @@ class NationTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'app.nation',
-//		'app.product'
+		'app.product'
 	);	
 
 /**
@@ -49,6 +49,23 @@ class NationTest extends CakeTestCase {
 			
 
 		$this->assertEquals($expected['Nation'], $result['Nation']);
+	}
+
+	public function testFindAll() {
+	    $params = array(
+	        'fields' => array('id', 'name')
+	    );
+	    $results = $this->Nation->find('all', $params);
+		$expected = array(
+				array('Nation' => array('id' => 1, 'name' => 'JPN')),
+				array('Nation' => array('id' => 2, 'name' => 'USA')),
+				array('Nation' => array('id' => 3, 'name' => 'GER')),
+				array('Nation' => array('id' => 4, 'name' => 'SPA'))
+				);
+
+		for($i=0; $i < count($results); $i++) {
+			$this->assertEquals($expected[$i]['Nation'], $results[$i]['Nation']);
+		}
 	}
 
 }
