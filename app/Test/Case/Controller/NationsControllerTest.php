@@ -23,6 +23,17 @@ class NationsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testIndex() {
+		$result = $this->testAction('/nations/index', array('method' => 'get', 'return' => 'vars'));
+		debug($result);
+
+		$expected = array(
+				array('Nation' => array('id' => 1, 'name' => 'JPN')),
+				array('Nation' => array('id' => 2, 'name' => 'USA')),
+				array('Nation' => array('id' => 3, 'name' => 'GER')),
+				array('Nation' => array('id' => 4, 'name' => 'SPA'))
+				);
+
+		$this->assertEquals($expected, $result['nations']);
 	}
 
 /**
@@ -31,6 +42,20 @@ class NationsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testView() {
+		$expected = array(
+				array('Nation' => array('id' => 1, 'name' => 'JPN')),
+				array('Nation' => array('id' => 2, 'name' => 'USA')),
+				array('Nation' => array('id' => 3, 'name' => 'GER')),
+				array('Nation' => array('id' => 4, 'name' => 'SPA'))
+				);
+
+		for ($i = 0; $i < count($expected); $i++) {
+			$index = $i + 1;
+			$result = $this->testAction('/nations/view/'.$index , array('method' => 'get', 'return' => 'vars'));
+			debug($result);
+			$this->assertEquals($expected[$i]['Nation'], $result['nation']['Nation']);
+		}
+
 	}
 
 /**
