@@ -64,6 +64,14 @@ class NationsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testAdd() {
+  		$data['Nation']['name'] = 'POR';
+		$result = $this->testAction('/nations/add', array('data' => $data, 'method' => 'post', 'return' => 'vars'));
+		$result = $this->testAction('/nations/view/5' , array('method' => 'get', 'return' => 'vars'));
+		debug($result);
+
+		$expected = array('id' => 5, 'name' => 'POR');
+
+		$this->assertEquals($expected, $result['nation']['Nation']);
 	}
 
 /**
