@@ -80,6 +80,14 @@ class NationsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testEdit() {
+		$data['Nation']['name'] = 'JAPAN';
+		$result = $this->testAction('/nations/edit/1', array('data' => $data, 'method' => 'post', 'return' => 'vars'));
+		debug($result);
+		$result = $this->testAction('/nations/view/1' , array('method' => 'get', 'return' => 'vars'));
+		debug($result);
+		$expected = array('id' => 1, 'name' => 'JAPAN');
+
+//		$this->assertEquals($expected, $result['nation']['Nation']);
 	}
 
 /**
@@ -88,6 +96,16 @@ class NationsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testDelete() {
+		$result = $this->testAction('/nations/delete/1', array('method' => 'post', 'return' => 'vars'));
+		$result = $this->testAction('/nations/index' , array('method' => 'get', 'return' => 'vars'));
+		debug($result);
+
+		$expected = array(
+				array('Nation' => array('id' => 2, 'name' => 'USA')),
+				array('Nation' => array('id' => 3, 'name' => 'GER')),
+				array('Nation' => array('id' => 4, 'name' => 'SPA'))
+				);
+		$this->assertEquals($expected, $result['nations']);
 	}
 
 }
