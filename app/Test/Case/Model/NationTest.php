@@ -68,4 +68,18 @@ class NationTest extends CakeTestCase {
 		}
 	}
 
+	public function testAddSameNationName() {
+		// can't add Nation name which already added
+		$count = $this->Nation->find('count');
+		$this->assertEquals(4, $count);
+
+		$data = array('Nation' => array('name' => 'JPN'));
+
+		$result = $this->Nation->Save($data);
+		debug($result);
+
+		$count_after_add = $this->Nation->find('count');
+		$this->assertEquals(4, $count_after_add);
+	}
+
 }
