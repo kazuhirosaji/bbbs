@@ -27,6 +27,28 @@ class ProductTest extends CakeTestCase {
 		$this->Product = ClassRegistry::init('Product');
 	}
 
+
+	public function testFindFirst() {
+	    $params = array(
+	        'conditions' => array('Product.id' => 1),
+	        'fields' => array('id', 'name', 'nation_id', 'description')
+	    );
+
+		$result = $this->Product->find('first', $params);
+		$expected = 
+				array('Product' => array(
+					'id' => '1',
+					'name' => 'Sake',
+					'nation_id' => '1',
+					'description' => 'Sake is alchol drink in Japan.'));
+		debug($result);
+
+		$this->assertEquals($expected['Product'], $result['Product']);
+	}
+
+	public function testFindAll() {
+	}
+
 /**
  * tearDown method
  *
