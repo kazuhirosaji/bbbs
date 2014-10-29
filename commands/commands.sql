@@ -37,3 +37,6 @@ INSERT INTO products (name,nation_id,description,created)
 
 create database test_bbbs;
 grant all on test_bbbs.* to dbuser@localhost identified by '*******';
+
+
+alter table nations add unique (name);

@@ -31,7 +31,7 @@ class Nation extends AppModel {
 			),
 		),
 		'name' => array(
-			'rule' => 'notEmpty'
+			'rule' => array('notEmpty', 'unique'),
 			),
 	);
 

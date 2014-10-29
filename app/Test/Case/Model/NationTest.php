@@ -69,17 +69,28 @@ class NationTest extends CakeTestCase {
 	}
 
 	public function testAddSameNationName() {
-		// can't add Nation name which already added
-		$count = $this->Nation->find('count');
-		$this->assertEquals(4, $count);
+	    $params = array(
+	        'fields' => array('id', 'name')
+	    );
 
-		$data = array('Nation' => array('name' => 'JPN'));
 
-		$result = $this->Nation->Save($data);
-		debug($result);
+		try {
+			// can't add Nation name which already added
+			$count = $this->Nation->find('count');
+			$this->assertEquals(4, $count);
 
-		$count_after_add = $this->Nation->find('count');
-		$this->assertEquals(4, $count_after_add);
+			$data = array('Nation' => array('name' => 'JPN'));
+			$result = $this->Nation->save($data);
+			$count_after_add = $this->Nation->find('count');
+
+			// /var/www/html/bbbs/lib/Cake/Model/Datasource/Database/Mysql.php
+			// のPDO::ATTR_ERRMODE => を "PDO::ERRMODE_SILENT" にした時のみ、本検証処理が行われる。
+			$this->assertEquals(4, $count_after_add);
+
+		} catch (PDOException $e) {
+			debug($e);
+		}
+
 	}
 
 }
