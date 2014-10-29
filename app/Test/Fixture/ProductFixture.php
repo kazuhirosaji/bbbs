@@ -33,13 +33,23 @@ class ProductFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'name' => 'Lorem ipsum dolor sit amet',
+			'name' => 'Sake',
 			'nation_id' => 1,
-			'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-			'link' => 'Lorem ipsum dolor sit amet',
-			'image' => 'Lorem ipsum dolor sit amet',
+			'description' => 'Sake is alchol drink in Japan.',
+			'link' => 'http://www.yahoo.co.jp',
+			'image' => '',
 			'created' => '2014-10-18 13:58:59',
 			'modified' => '2014-10-18 13:58:59'
+		),
+		array(
+			'id' => 2,
+			'name' => 'Beer',
+			'nation_id' => 2,
+			'description' => 'Beer is famous alchol drink in German.',
+			'link' => 'http://www.yahoo.co.jp',
+			'image' => '',
+			'created' => '2014-10-29 13:58:59',
+			'modified' => '2014-10-29 13:58:59'
 		),
 	);
 
