@@ -46,7 +46,18 @@ class ProductTest extends CakeTestCase {
 		$this->assertEquals($expected['Product'], $result['Product']);
 	}
 
-	public function testFindAll() {
+	public function testFindRelatedNations() {
+		$expected = array(
+				array('id' => 1, 'name' => 'JPN'),
+				array('id' => 2, 'name' => 'USA'));
+
+		$result = $this->Product->find('all');
+		debug($result);
+
+		for ($i = 0; $i < count($expected); $i++) {
+			$this->assertEquals($expected[$i], $result[$i]['Nation']);
+		}
+
 	}
 
 /**
