@@ -93,4 +93,13 @@ class NationTest extends CakeTestCase {
 
 	}
 
+	public function testRelatedProducts() {
+		$params = array(
+			"conditions"=> array('Nation.id' => 1));
+		$results = $this->Nation->find("all", $params);
+		$expected = "Sake";
+		debug($results);
+		$this->assertEquals($expected, $results[0]['Product'][0]['name']);
+	}	
+
 }
