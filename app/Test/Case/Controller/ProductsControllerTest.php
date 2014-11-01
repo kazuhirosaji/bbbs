@@ -85,6 +85,35 @@ class ProductsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testAdd() {
+		$now = new DateTime();
+		debug($now);
+		$expected = array('Product' => array(
+				'id' => 3,
+				'name' => 'Wine',
+				'nation_id' => '4',
+				'description' => 'This is Red wine',
+				'link' => 'http://www.yahoo.co.jp',
+				'image' => '',
+				'created' => $now->date,
+				'modified' => $now->date,
+			),
+			'Nation' => array('id' => 4, 'name' => 'SPA'),
+		);
+
+
+		$data['Product'] = array(
+				'name' => 'Wine',
+				'nation_id' => '4',
+				'description' => 'This is Red wine',
+				'link' => 'http://www.yahoo.co.jp',
+				'image' => '',
+				'created' => $now->date,
+				'modified' => $now->date);
+		$result = $this->testAction('/products/add', array('data' => $data, 'method' => 'post', 'return' => 'vars'));
+		$result = $this->testAction('/products/view/3', array('method' => 'get', 'return' => 'vars'));
+		debug($result);
+		$this->assertEquals($expected, $result['product']);
+
 	}
 
 /**
