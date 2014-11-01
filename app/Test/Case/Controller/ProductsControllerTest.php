@@ -85,8 +85,7 @@ class ProductsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testAdd() {
-		$now = new DateTime();
-		debug($now);
+		$now = date('Y-m-d H:i:s');
 		$expected = array('Product' => array(
 				'id' => 3,
 				'name' => 'Wine',
@@ -94,8 +93,8 @@ class ProductsControllerTest extends ControllerTestCase {
 				'description' => 'This is Red wine',
 				'link' => 'http://www.yahoo.co.jp',
 				'image' => '',
-				'created' => $now->date,
-				'modified' => $now->date,
+				'created' => $now,
+				'modified' => $now,
 			),
 			'Nation' => array('id' => 4, 'name' => 'SPA'),
 		);
@@ -107,8 +106,8 @@ class ProductsControllerTest extends ControllerTestCase {
 				'description' => 'This is Red wine',
 				'link' => 'http://www.yahoo.co.jp',
 				'image' => '',
-				'created' => $now->date,
-				'modified' => $now->date);
+				'created' => $now,
+				'modified' => $now);
 		$result = $this->testAction('/products/add', array('data' => $data, 'method' => 'post', 'return' => 'vars'));
 		$result = $this->testAction('/products/view/3', array('method' => 'get', 'return' => 'vars'));
 		debug($result);
