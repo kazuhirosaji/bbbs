@@ -122,6 +122,33 @@ class ProductsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testEdit() {
+		$data['Product'] = array(
+			'id' => 2,
+			'description' => 'This is Beer from German.',
+			'nation_id' => 3, );
+
+		$now = date('Y-m-d H:i:s');
+
+		$expected = array(
+				'Product' => array(
+				'id' => '2',
+				'name' => 'Beer',
+				'nation_id' => '3',
+				'description' => 'This is Beer from German.',
+				'link' => 'http://www.yahoo.co.jp',
+				'image' => '',
+				'created' => '2014-10-29 13:58:59',
+				'modified' => $now),
+				
+				'Nation' => array("id" => 3, "name" => "GER"),
+			);
+
+		$result = $this->testAction('/products/edit/2', array('data' => $data, 'return' => 'vars'));
+		$result = $this->testAction('/products/view/2', array('method' => 'get', 'return' => 'vars'));
+		debug($result);
+
+		$this->assertEquals($expected, $result['product']);
+
 	}
 
 /**
