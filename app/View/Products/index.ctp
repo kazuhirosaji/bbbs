@@ -20,7 +20,11 @@
 			<?php echo $this->Html->link($product['Nation']['name'], array('controller' => 'nations', 'action' => 'view', $product['Nation']['id'])); ?>
 		</td>
 		<td><?php echo h($product['Product']['description']); ?>&nbsp;</td>
-		<td><?php echo h($product['Product']['link']); ?>&nbsp;</td>
+		<?php if (isset($product['Product']['link'])): ?>
+			<td><?php echo $this->Html->link(__('page'), $product['Product']['link']) ?>&nbsp;</td>
+		<?php else: ?>
+			<td><?php echo "-" ?>&nbsp;</td>
+		<?php endif ?>
 		<td><?php echo h($product['Product']['image']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['created']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['modified']); ?>&nbsp;</td>
