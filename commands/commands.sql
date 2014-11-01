@@ -40,3 +40,5 @@ grant all on test_bbbs.* to dbuser@localhost identified by '*******';
 
 
 alter table nations add unique (name);
+
+alter table products change column image image mediumblob;
