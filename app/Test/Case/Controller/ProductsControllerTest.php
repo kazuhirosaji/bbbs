@@ -156,6 +156,17 @@ class ProductsControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testDelete() {
+		// before delete
+		$result = $this->testAction('/products/index', array('method'=>'post', 'return'=>'vars'));
+		$this->assertCount(2, $result['products']);
+
+		// after delete
+		$this->testAction('/products/delete/1');
+		$result = $this->testAction('/products/index', array('method'=>'post', 'return'=>'vars'));
+		debug($result);
+
+		$this->assertCount(1, $result['products']);
+
 	}
 
 }
